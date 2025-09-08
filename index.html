@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Explore Bookmarker, a webpage to effortlessly manage your favorite sites. Discover JavaScript-powered features with Bootstrap 5 for easy bookmarking. Created by Hassan Essam."
+    />
+    <meta
+      name="keywords"
+      content="Bookmarker,JavaScript,Bootstrap 5,Assiment-9"
+    />
+    <meta name="author" content="Abdelmenem soliman" />
+    <!-- fav Icon-->
+    <link rel="icon" href="./img/bookmark.ico" />
+    <title>Bookmarker</title>
+    <!-- fontawesome -->
+    <link rel="stylesheet" href="./css/all.css" />
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <!-- main style -->
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <section id="Home" class="row" >
+      <h1>Bookmarker</h1>
+      <div class="w-75 m-auto p-4 box  col-12">
+        <h2 class="text-center">
+          <i class="fa-solid fa-bookmark"></i> your favorite sites
+          <i class="fa-solid fa-bookmark"></i>
+        </h2>
+        <label for="siteName" class="my-2"
+          ><i class="fa-solid fa-book-bookmark"></i> Site Name</label
+        >
+        <input
+          type="text"
+          name="siteName"
+          id="siteName"
+          class="form-control"
+          placeholder="linkedin"
+        />
+        <label for="URL" class="my-2"
+          ><i class="fa-solid fa-link"></i> Site URL</label
+        >
+        <input
+          type="url"
+          name="URL"
+          id="URL"
+          class="form-control"
+          placeholder="https://example.com"
+        />
+        <div class="d-flex justify-content-center">
+          <button class="btn  m-3 px-5" id="addbtn" type="submit">
+            Add Site
+          </button>
+        </div>
+        <input
+          type="text"
+          class="form-control my-4"
+          id="Search"
+          placeholder="Search"
+          onkeyup="searchProduct(this.value)"
+        />
+        <table class="table table-striped mytable">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th>Site Name</th>
+              <th>Site URL</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody id="bodyData"></tbody>
+        </table>
+      </div>
+    </section>
+    <section></section>
+
+    <!-- bootstrap -->
+    <script src="./js/bootstrap.bundle.js"></script>
+    <!-- my script-->
+    <script src="./js/main.js"></script>
+  </body>
+</html>
