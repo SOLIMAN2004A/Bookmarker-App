@@ -33,6 +33,11 @@ function addSite() {
   localStorage.setItem("My Sites", local);
   // to reset input
   resetInput();
+  siteName.classList.remove("is-valid");
+  siteUrl.classList.remove("is-valid");
+  btnValidName = false;
+  btnValidUrl = false;
+  addBtn.disabled = true;
 }
 
 // to display Sites  in table
@@ -83,6 +88,12 @@ function siteinfo(index) {
   currentIndex = index;
   siteName.value = Sites[index].nameSite;
   siteUrl.value = Sites[index].urlSite;
+  siteName.classList.add("is-valid");
+  siteUrl.classList.add("is-valid");
+  btnValidName = true;
+  btnValidUrl = true;
+  addBtn.disabled = false;
+
   //  to change name of btn to update
   document.getElementById("addbtn").innerHTML = "Update";
 }
@@ -97,6 +108,11 @@ function updateSite() {
   // to reset input
   resetInput();
   document.getElementById("addbtn").innerHTML = "Add Site";
+  siteName.classList.remove("is-valid");
+  siteUrl.classList.remove("is-valid");
+  btnValidName = false;
+  btnValidUrl = false;
+  addBtn.disabled = true;
 }
 
 // delet Site
@@ -106,4 +122,51 @@ function deleteSite(index) {
   // to save sites after delete items
   var local = JSON.stringify(Sites);
   localStorage.setItem("My Sites", local);
+}
+var btnValidName = false;
+var btnValidUrl = false;
+
+// Vailidation the input
+var alertSiteName = document.getElementById("alertSiteName");
+siteName.onkeyup = function () {
+  var regexNameSite = /^[A-Za-z0-9 _-]{3,15}$/;
+  if (regexNameSite.test(siteName.value) && siteName.value.trim() !== "") {
+    btnValidName = true;
+    siteName.classList.remove("is-invalid");
+    siteName.classList.add("is-valid");
+    alertSiteName.classList.add("d-none");
+  } else {
+    btnValidName = false;
+    siteName.classList.remove("is-valid");
+    siteName.classList.add("is-invalid");
+    alertSiteName.classList.remove("d-none");
+  }
+  validateButton();
+};
+
+// Vailidation the URL input
+var alertSiteUrl = document.getElementById("alertSiteUrl");
+siteUrl.onkeyup = function () {
+  var regexNameSite = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/\S*)?$/;
+  if (regexNameSite.test(siteUrl.value) && siteUrl.value.trim() !== "") {
+    btnValidUrl = true;
+    siteUrl.classList.remove("is-invalid");
+    siteUrl.classList.add("is-valid");
+    alertSiteUrl.classList.add("d-none");
+  } else {
+    btnValidUrl = false;
+    siteUrl.classList.remove("is-valid");
+    siteUrl.classList.add("is-invalid");
+    alertSiteUrl.classList.remove("d-none");
+  }
+  validateButton();
+};
+
+// buttom validation
+function validateButton() {
+  if (btnValidName && btnValidUrl) {
+    addBtn.removeAttribute("disabled");
+  } else {
+    addBtn.disabled = true;
+  }
 }
